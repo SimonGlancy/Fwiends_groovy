@@ -12,7 +12,7 @@ class FwiendSpec extends Specification {
     spike = new Fwiend("Spike")
     nikesh = new Fwiend("Nikesh")
     leo = new Fwiend("Leo")
-    nikesh.addMoment("This is my Moment")
+    nikesh.addMoment("This is my Moment","Tue 26/07/2016 12:13")
   }
 
   def 'initialize with a name'() {
@@ -33,7 +33,7 @@ class FwiendSpec extends Specification {
 
   def 'adds a post to the moments array'() {
     when:
-    spike.addMoment("post")
+    spike.addMoment("post", "Tue 26/07/2016 12:50")
     def res = spike.moments
 
     then:

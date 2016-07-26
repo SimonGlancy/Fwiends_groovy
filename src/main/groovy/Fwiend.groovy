@@ -12,13 +12,13 @@ class Fwiend {
     this.fwiends = []
   }
 
-  def addMoment(body) {
-    def moment = momentKlass.newInstance(body)
+  def addMoment(body, timestamp) {
+    def moment = momentKlass.newInstance(body, timestamp)
     this.moments << moment
   }
 
   def viewMomentsOf(fwiend) {
-    fwiend.moments 
+    fwiend.moments
   }
 
   def addToFwiends(fwiend) {
