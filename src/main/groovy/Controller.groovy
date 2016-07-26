@@ -17,15 +17,44 @@ class Controller {
     this.currentUser = null
   }
 
-  def assignToCurrentUser(name){
+  def follow(name) {
+    !findUser(name) ? formatErrorString(name) : addToFwiends(name)
+  }
+
+  def createMoment(body, dateStamp){
+    currentUser.addMoment(body, dateStamp)
+  }
+
+  def viewTimeLineOf(name){
+    !findUser(name) ? formatErrorString(name) : formatTimeline(name)
+  }
+
+  private def formatTimeline(name){
+    def foundUser = findUser(name)
+    String presentationString = ""
+    foundUser.moments.each{
+      presentationString += "$foundUser.name Posted on $it.timestamp | $it.body\n"
+    }
+    presentationString
+  }
+
+  private def addToFwiends(name) {
+    currentUser.addToFwiends(findUser(name))
+  }
+
+  private def formatErrorString(name){
+    return "Can't find $name Please enter valid user"
+  }
+
+  private def assignToCurrentUser(name){
     this.currentUser = findUser(name)
   }
 
-  def findUser(name){
+  private def findUser(name){
     this.users.find {it.name == name}
   }
 
-  def createNewUser(name){
+  private def createNewUser(name){
     this.currentUser = fwiendKlass.newInstance(name)
     this.users << currentUser
   }

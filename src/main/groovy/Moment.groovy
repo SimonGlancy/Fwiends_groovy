@@ -7,5 +7,4 @@ class Moment {
     this.body = body
     this.timestamp = timestamp
   }
-
 }
