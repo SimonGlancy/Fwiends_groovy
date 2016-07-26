@@ -29,13 +29,29 @@ class Controller {
     !findUser(name) ? formatErrorString(name) : formatTimeline(name)
   }
 
+  def showFwiends(){
+    !currentUser.fwiends ? fwiendsErrorString() : fwiendsString()
+  }
+
+  private def fwiendsString(){
+    def fwiendsString = "You're Fwiends with:\n"
+    currentUser.fwiends.each{
+      fwiendsString += it.name + "\n"
+    }
+    fwiendsString
+  }
+
+  private def fwiendsErrorString(){
+    return "Sorry you haven't got any Fwiends yet..."
+  }
+
   private def formatTimeline(name){
     def foundUser = findUser(name)
-    String presentationString = ""
+    String timelineString = ""
     foundUser.moments.each{
-      presentationString += "$foundUser.name Posted on $it.timestamp | $it.body\n"
+      timelineString += "$foundUser.name Posted on $it.timestamp | $it.body\n"
     }
-    presentationString
+    timelineString
   }
 
   private def addToFwiends(name) {

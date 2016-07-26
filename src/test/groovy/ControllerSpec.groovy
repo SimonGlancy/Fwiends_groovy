@@ -121,4 +121,25 @@ class ControllerSpec extends Specification {
    res == "Can't find Barry Please enter valid user"
  }
 
+ def 'it allows a user to show their fwiends'(){
+   when:
+   controller.logIn("Spike")
+   controller.logOut()
+   controller.logIn("Nikesh")
+   controller.follow("Spike")
+
+   then:
+   controller.showFwiends() == "You're Fwiends with:\nSpike\n"
+ }
+
+ def 'it throws an error if a user has no fwiends'(){
+   when:
+   controller.logIn("Spike")
+   controller.logOut()
+   controller.logIn("Nikesh")
+
+   then:
+   controller.showFwiends() == "Sorry you haven't got any Fwiends yet..."
+ }
+
 }
