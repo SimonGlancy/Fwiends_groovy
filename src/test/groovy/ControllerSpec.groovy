@@ -8,6 +8,7 @@ class ControllerSpec extends Specification {
     controller = new Controller()
   }
 
+
   def 'initialize with an empty users array'(){
     when:
     def res = controller.users

@@ -18,7 +18,7 @@ class Controller {
   }
 
   def follow(name) {
-    !findUser(name) ? formatErrorString(name) : addToFwiends(name)
+    !findUser(name) ? findFwiendErrorString(name) : addToFwiends(name)
   }
 
   def createMoment(body, dateStamp){
@@ -26,7 +26,7 @@ class Controller {
   }
 
   def viewTimeLineOf(name){
-    !findUser(name) ? formatErrorString(name) : formatTimeline(name)
+    !findUser(name) ? findFwiendErrorString(name) : formatTimelineOf(name)
   }
 
   def showFwiends(){
@@ -45,7 +45,7 @@ class Controller {
     return "Sorry you haven't got any Fwiends yet..."
   }
 
-  private def formatTimeline(name){
+  private def formatTimelineOf(name){
     def foundUser = findUser(name)
     String timelineString = ""
     foundUser.moments.each{
@@ -58,7 +58,7 @@ class Controller {
     currentUser.addToFwiends(findUser(name))
   }
 
-  private def formatErrorString(name){
+  private def findFwiendErrorString(name){
     return "Can't find $name Please enter valid user"
   }
 
